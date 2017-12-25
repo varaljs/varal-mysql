@@ -21,9 +21,10 @@ class Mysql {
         return res;
     }
 
-    middleware(server) {
-        const mysql = new QueryBuilder(this);
-        server.bind('varal.mysql', mysql);
+    static register(options) {
+        const mysql = new Mysql(options);
+        const builder = new QueryBuilder(mysql);
+        return server => server.bind('varal.mysql', builder);
     }
 
 }
