@@ -1,0 +1,25 @@
+{
+  "name": "varal-mysql",
+  "version": "1.0.0",
+  "description": "mysql support for varal",
+  "main": "index.js",
+  "author": "dmpty",
+  "license": "MIT",
+  "repository": "dmpty/varal",
+  "engines": {
+    "node": ">= 7.6.0"
+  },
+  "dependencies": {
+    "mysql2": "^1.5.1",
+    "varal-collection": "^1.0.1"
+  },
+  "keywords": [
+    "varal",
+    "mysql"
+  ],
+  "files": [
+    "README.md",
+    "index.js",
+    "lib/"
+  ]
+}
