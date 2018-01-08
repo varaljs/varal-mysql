@@ -21,10 +21,14 @@ class Mysql {
         return res;
     }
 
-    static register(options) {
-        const mysql = new Mysql(options);
-        const builder = new QueryBuilder(mysql);
+    static varal(options) {
+        const builder = Mysql.new(options);
         return server => server.bind('varal.mysql', builder);
+    }
+
+    static new(options) {
+        const mysql = new Mysql(options);
+        return new QueryBuilder(mysql);
     }
 
 }
