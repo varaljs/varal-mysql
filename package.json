@@ -1,7 +1,7 @@
 {
   "name": "varal-mysql",
-  "version": "1.0.2",
-  "description": "mysql support for varal",
+  "version": "1.0.3",
+  "description": "mysql helper with collection",
   "main": "index.js",
   "author": "dmpty",
   "license": "MIT",
