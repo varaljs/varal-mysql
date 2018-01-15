@@ -4,14 +4,26 @@ const QueryBuilder = require('./lib/queryBuilder');
 
 class Mysql {
 
-    constructor(options) {
+    constructor(options, pooling) {
         this.options = options;
+        if (pooling === true)
+            this.pool = mysql.createPool(this.options);
+    }
+
+    async end() {
+        if (this.pool !== undefined)
+            await this.pool.end();
     }
 
     async query(sqlString, values) {
-        let connection = await mysql.createConnection(this.options);
-        let [res] = await connection.query(sqlString, values);
-        connection.destroy();
+        let res = undefined;
+        if (this.pool !== undefined)
+            [res] = await this.pool.query(sqlString, values);
+        else {
+            const connection = await mysql.createConnection(this.options);
+            [res] = await connection.query(sqlString, values);
+            connection.destroy();
+        }
         if (Array.isArray(res))
             return new collection(res);
         return res;
