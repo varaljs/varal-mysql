@@ -8,12 +8,8 @@ class Mysql {
         this.options = options;
     }
 
-    connect() {
-        return mysql.createConnection(this.options);
-    }
-
     async query(sqlString, values) {
-        let connection = await this.connect();
+        let connection = await mysql.createConnection(this.options);
         let [res] = await connection.query(sqlString, values);
         connection.destroy();
         if (Array.isArray(res))
@@ -21,14 +17,13 @@ class Mysql {
         return res;
     }
 
-    static varal(options) {
-        const builder = Mysql.new(options);
-        return server => server.bind('varal.mysql', builder);
+    table(name) {
+        return new QueryBuilder(this, name);
     }
 
-    static new(options) {
+    static varal(options) {
         const mysql = new Mysql(options);
-        return new QueryBuilder(mysql);
+        return server => server.bind('varal.mysql', mysql);
     }
 
 }
