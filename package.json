@@ -1,6 +1,6 @@
 {
   "name": "varal-mysql",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "mysql helper with collection",
   "main": "index.js",
   "author": "dmpty",
